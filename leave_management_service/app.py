@@ -14,7 +14,6 @@ engine = create_engine(DATABASE_URL)
 Session = sessionmaker(bind=engine)
 
 # Create tables if they don't exist and add default leave types
-@app.before_first_request
 def initialize_database():
     Base.metadata.create_all(engine)
     session = Session()
@@ -220,6 +219,6 @@ def get_leave_balances(employee_id):
         session.close()
 
 if __name__ == '__main__':
-    # This block is for local development and testing. 
-    # In a production container, Gunicorn or similar WSGI server would run the app.
+    with app.app_context():
+        initialize_database()
     app.run(debug=True, host='0.0.0.0', port=5000)
