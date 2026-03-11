@@ -18,7 +18,6 @@ Session = sessionmaker(bind=engine)
 
 # This service primarily handles approval actions, so it doesn't need to initialize all leave types
 # However, it needs to ensure the tables exist if it's the first service to connect
-@app.before_first_request
 def initialize_database():
     Base.metadata.create_all(engine)
 
@@ -116,4 +115,6 @@ def reject_leave_request(request_id):
         session.close()
 
 if __name__ == '__main__':
+    with app.app_context():
+        initialize_database()
     app.run(debug=True, host='0.0.0.0', port=5001)
