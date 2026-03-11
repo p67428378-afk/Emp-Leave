@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from datetime import date, timedelta
 import os
 
-from models import Base, Employee, LeaveRequest, LeaveType, FlexiHolidayList
+from .models import Base, Employee, LeaveRequest, LeaveType, FlexiHolidayList
 
 app = Flask(__name__)
 
