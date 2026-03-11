@@ -7,7 +7,7 @@ import os
 # Assuming models.py is accessible, e.g., via a shared library or copied
 # For this example, we'll assume it's in a common location or copied for simplicity
 # In a real microservices setup, models might be in a shared package or each service manages its own schema
-from leave_management_service.models import Base, Employee, LeaveRequest, LeaveType
+from shared.models import Base, Employee, LeaveRequest, LeaveType
 
 app = Flask(__name__)
 
